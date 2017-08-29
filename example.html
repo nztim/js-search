@@ -17,13 +17,23 @@
 
 				$('#results').html('');
 				var i = 0;
-				result.forEach(function(item) {
-					if (i++ > 20) {
-						return;
-					}
-					var div = $('#results');
-					div.html(div.html() + '<li>"' + item.file.title + '" ' + item.file.url + ' w:' + item.weight + '</li>');
-				});
+				if (result.length === 0) {
+        			$('#results').html('<li>No results</li>');
+        		} else {
+		            var i = 0;
+		            var resHtml = '';
+		            if (typeof result.forEach !== "undefined") {
+		                result.forEach(function(item) {
+		                        if (i++ > 20) {
+		                            return;
+		                        }
+		                        resHtml = resHtml +
+		                            '<li><a href="http://example.com/' + item.file.url.substr(3) +'">' + item.file.title + '</a><br />' +
+		                            'Weight: ' + item.weight + '</li>';
+		                });
+		            }
+		            $('#results').html(resHtml);
+		        }
 			});
 		});
 	</script>
