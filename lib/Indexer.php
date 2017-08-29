@@ -9,6 +9,8 @@ namespace cebe\jssearch;
 
 use cebe\jssearch\analyzer\HtmlAnalyzer;
 use cebe\jssearch\tokenizer\StandardTokenizer;
+use Parsedown;
+use SplFileInfo;
 
 /**
  * @author Carsten Brandt <mail@cebe.cc>
@@ -26,6 +28,10 @@ class Indexer
 			$fi++;
 
 			$contents = file_get_contents($file);
+			if ((new SplFileInfo($file))->getExtension() == 'md') {
+			    $parsedown = Parsedown::instance()->setMarkupEscaped(true)->setBreaksEnabled(true);
+			    $contents = $parsedown->text($contents);
+            }
 
 			// create file entry
 			$this->files[$fi] = $this->generateFileInfo($file, $contents, $basePath, $baseUrl);

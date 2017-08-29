@@ -1,5 +1,5 @@
 {
-    "name": "cebe/js-search",
+    "name": "nztim/js-search",
     "description": "A client side search engine for use on static pages.",
     "license": "MIT",
     "authors": [
@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-		"php": ">=5.4.0"
+		"php": ">=5.4.0",
+        "erusev/parsedown": "^1.6"
     },
 	"autoload": {
 		"psr-4": {
